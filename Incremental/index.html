@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="game">
+        <div id = "PopUp" style="display: none;"> <!-- add display: none later-->
+            <button id = "PopUpCloseBtn" onclick="ClosePopUp()">X</button>
+            <h1 style="margin: 10px 0;" id = "PopUpUpgradeTitle">Upgrade Title</h1>
+            <p id = "PopUpUpgradeDescription">Upgrade Description</p>
+            <p id = "PopUpUpgradeCost">Upgrade Cost</p>
+            <button id = "PopUpBuyBtn">Buy</button>
+        </div>
+        <header>Incramanatal</header>
+        <main>
+            
+            <section id="currencies">
+                <h2>Resources</h2>
+
+                <div class="SectionHolder">
+                    <div id="points" class="displayer">Points: 0 </div>
+                    <div class="displayer">Your aura: 0 </div>
+                </div>
+
+            </section>
+
+            <section id="upgrades">
+                <h2>Upgrades</h2>
+
+                <div class="SectionHolder" id = "upgradesHolder">
+                    <!-- <div>
+                        <button class="UpgradeButton">Click me!</button>
+                    </div> -->
+                </div>
+
+            </section>
+        </main>
+    </div>
+    
+
+    <script src="index.js"></script>
+</body>
+</html>
