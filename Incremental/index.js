@@ -102,7 +102,7 @@ function TickStart()
     valuesUpd = setInterval(() => {
         if (resume)
         {
-            pointsPerSec = base * mult;
+            pointsPerSec = base * mult * (clicks * 0.02 + 1);
             pointsPerSec = Math.round(pointsPerSec * 100) / 100;
             points += pointsPerSec / 5;
             points = Math.round(points * 100) / 100
@@ -113,6 +113,62 @@ function TickStart()
             clearInterval(valuesUpd);
         }
     }, 200);
+}
+
+function ClickerClick(displayer)
+{
+    console.log("clicked");
+    clicks++;
+
+    displayer.innerText = `${clicks} Clicks`
+}
+
+function CreateClickerZone()
+{
+    CreateSection("Clicker", false);
+
+    const sectionHolder = document.getElementById("ClickerHolder");
+    
+    const clickerButton = document.createElement("button");
+    clickerButton.id = "ClickerButton";
+
+    const clickDisplayer = document.createElement("div");
+    clickDisplayer.className = "displayer";
+    clickDisplayer.innerText = "0 Clicks";
+    clickDisplayer.id = "ClickDisplayer";
+
+    console.log(clickerButton);
+    clickerButton.addEventListener("mousedown", () => {
+        ClickerClick(clickDisplayer);
+    });
+
+    sectionHolder.appendChild(clickerButton);
+    sectionHolder.appendChild(clickDisplayer);
+}
+
+function CreateSection(name, upgrades)
+{
+    const section = document.createElement("section");
+    if (upgrades)
+    {
+        section.id = `${name}Upgrades`;
+    }
+    else
+    {
+        section.id = `${name}`;
+    }
+
+    const sectionHeader = document.createElement("h2");
+    sectionHeader.innerText = section.id;
+    section.appendChild(sectionHeader);
+
+    document.getElementById("mainZone").appendChild(section);
+
+    const sectionHolder = document.createElement("div");
+    sectionHolder.className = "SectionHolder";
+    sectionHolder.id = `${section.id}Holder`;
+
+    section.appendChild(sectionHolder);
 }
 
 function CreatePointUpgradeButton(name)
@@ -142,20 +198,34 @@ function CreatePointUpgradeButton(name)
 }
 
 
-let points = 10000;
-let pointsPerSec = 1;
+let points = 0;
+let pointsPerSec = 0;
 document.getElementById("points").innerText = `Points: ${points}\n${pointsPerSec} Points/Sec`;
 
-let base = 1;
+let base = 0;
 let mult = 1;
 
-let resume = false;
+let clicks = 0;
+
+let resume = true;
 
 let valuesUpd;
 
 const upgrades = {};
 
+// CreateClickerZone();
+
 const allPointUpgrades = {
+    "Start Game": {
+        desc: "Start the game with points gain",
+        cost: 0,
+        boost: () => { base += 1; },
+        layer: 1,
+        scaling: (cost, amount) => {
+            return (cost*(1.15**amount)).toFixed(2);
+        },
+        max : 1
+    },
     "Points Boost 1": {
         desc: "Increases points per second by 1",
         cost: 10,
@@ -164,7 +234,7 @@ const allPointUpgrades = {
         scaling: (cost, amount) => {
             return (cost*(1.15**amount)).toFixed(2);
         },
-        max : 10
+        max : null
     },
     "Points Boost 2": {
         desc: "Increases points per second by 2",
@@ -196,9 +266,19 @@ const allPointUpgrades = {
         },
         max : null
     },
+    "Clicker": {
+        desc: "Creates a clicker area, 1 click = +0.01 mult",
+        cost: 500,
+        boost: () => { CreateClickerZone() },
+        layer: 1,
+        scaling: (cost, amount) => {
+            return (cost*(2.4**amount)).toFixed(2);
+        },
+        max : 1
+    },
 };
 
-CreatePointUpgradeButton("Points Boost 1");
+CreatePointUpgradeButton("Start Game");
 
 TickStart();
 
