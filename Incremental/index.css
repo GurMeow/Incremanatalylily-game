@@ -69,6 +69,37 @@ body {
   align-items: center;
 }
 
+#NewsLine {
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  background: #222; /* optional, just for clarity */
+}
+
+.NoUnderline {
+    text-decoration: none;
+    color: cyan;
+}
+
+.newsItem {
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: scrollLeft 15s linear forwards;
+}
+
+@keyframes scrollLeft {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
 .SectionHolder{
     flex: 1;
     display: flex;
