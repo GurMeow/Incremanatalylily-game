@@ -92,6 +92,7 @@ function OpenPopUp(name)
         document.getElementById("PopUpBuyBtn").innerText = `Buy`;
     }
 }
+
 function ClosePopUp()
 {
     document.getElementById("PopUp").style.display = "none";
@@ -113,6 +114,138 @@ function TickStart()
             clearInterval(valuesUpd);
         }
     }, 200);
+}
+
+function News()
+{
+    const newsLine = document.getElementById("NewsLine");
+    setInterval(() => {
+        if (!resume) return;
+
+        const newsItem = document.createElement("div");
+        newsItem.className = "newsItem";
+
+        function makeRickroll() {
+            const a = document.createElement("a");
+            a.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            a.target = "_blank";
+            a.innerText = "The funny";
+            a.classList.add("NoUnderline");
+            return a;
+        }
+
+        const messages = [
+            "The Fr*nch are coming.",
+            "Did you know? if you're reading this, you are probably bored and an idiot :D",
+            "Breaking News: you're a faggot",
+            "The Gametony",
+            "The Game",
+            "Adolf was here",
+            "Erez said that ->",
+            "Am I racist?",
+            "Absolute Cinema",
+            "AND THE WINGED HUSSARS ARRIVED!",
+            "if if if then if if but if if if perhaps if if",
+            "Dear god anthony's code gave me cancer",
+            "better then making a chess bot",
+            "I love javascript",
+            "`You know what I am to lazy` - Shahar 2025 20th of October 9:36 PM",
+            "Hail the great Alex",
+            "Etidhar exists",
+            "America to japan: `Prepare for nuclear attack`",
+            "ALL HAIL BRITANNIA",
+            "Light Yagami was right",
+            "`I LELOCUH VI BRITTANIA COMMAND YOU TO KEEP PLAYING`",
+            "Shave the heads of Juden lead them to the shower burn them in the kiln just to show my power",
+            "Ligma yagami",
+            "SIX SEVEN",
+            "6 7",
+            "I shall XOR my existence with yours. See what happends",
+            "T R I G O N O M E T R Y",
+            "The third plane has hit the tower",
+            "Jewish space lasers hitting innocent cats in gaza",
+            "breaking news: I can't stop HEGALE! the loneliness SHAW!",
+            "transposition tables are NOT trans",
+            "keep your pans safe, pansexuals are roaming the streets",
+            "E=mc^2+AI",
+            "as a child, I yearned for the mines",
+            "Study shows: 95% of people working with bit-boards are depressed",
+            "Visual studio is heavier then your mama",
+            "I am shadow the edge lord",
+            "I, AM STEVE",
+            "If im a human that loves cards against humanity, am I a masochist?",
+            "Johnny is not forcing me at gunpoint to say History is fun",
+            "Play Omori for fuck sake",
+            "Johnny if you're reading this, uhhhhhhhhhhhhhhhhhhhhh",
+            "Erez is a bitch",
+            "Shahar is a bitch",
+            "Michael is NOT a bitch",
+            "Anthony is a god",
+            "Gur is a [Redacted]",
+            "Wordle time! - said Michael Calmly",
+            "Jesus christ was found to be guilty as a sock",
+            "Wordle 1584 5/6 ⬜⬜⬜⬜⬜⬜⬜🟨⬜⬜⬜🟨⬜⬜⬜⬜🟨⬜🟨🟨🟩🟩🟩🟩🟩 - Jesus Christ I suck",
+            "Java sucks smh",
+            "Bar Irantony drank my soul and sold it to Allah",
+            "I love Meth (totally a typo)",
+            "Soon™, a moment now and the heat death of the universe",
+            "Michael was supposed to be here 5 days ago",
+            "The real nazis were the friends we made a long the way ❤️",
+            "That's what she said - Erez Kehati",
+            "Idiotony - Michael (I feel sad)",
+            "Is this x defined? is f continuous? how do you find out? you can use the limit process!",
+            "200 + 200 = 360",
+            "`+2^74% tarrifs on china` Orange head threatening",
+            "Tanya was just following orders",
+            "The Epstein files ->     <-",
+            "Climate change was invented by Bibi",
+            "Za Juden",
+            "u * v = |u| * |v| * cos(a)",
+            "To the shadow realm you go",
+            "Everyone in yasa is on drugs.",
+            "AVAL LAMAAAAA ZE LO MISTADERRR",
+            "SILENCE! I KILL YOU!",
+            "I'm silking my song",
+            "Not so breaking new: Poland got invaded",
+            "SHAW",
+            "POSHANKA",
+            "Fren :D",
+            "Nothing comes to my mind",
+            "How was your day? I don't really care",
+            "Tommy Tommy tesayek",
+            "עברית שפה קשה",
+            "קשה עברית שפה",
+            "קשה שפה עברית",
+            "Johnny's Phone number is 676-767-666",
+            "Johnny's Discord user is british_piggy",
+            "Me is me, beautifuly written by Erez",
+            "I want some KFC",
+            "Minesweeper",
+            "ChatGPT Wrote this.",
+            "6x7=67",
+            makeRickroll,
+            // makeRickroll,
+            // makeRickroll,
+            // makeRickroll,
+            // makeRickroll,
+            // makeRickroll,
+            // makeRickroll,
+        ];
+
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+
+        if (typeof msg === "string") {
+            newsItem.innerText = msg;
+        } else if (typeof msg === "function") {
+            newsItem.appendChild(msg()); // create a fresh <a> each time
+        }
+
+        newsLine.appendChild(newsItem);
+
+        newsItem.addEventListener("animationend", () => {
+            newsItem.remove();
+        });
+    }, 3500);
 }
 
 function ClickerClick(displayer)
@@ -282,3 +415,4 @@ CreatePointUpgradeButton("Start Game");
 
 TickStart();
 
+News();
